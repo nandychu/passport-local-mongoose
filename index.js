@@ -92,7 +92,7 @@ module.exports = function(schema, options) {
         }
       })
       .then(() => {
-        if(this.resetCode !== resetCode) {
+        if(this.resetCode.code !== resetCode) {
           throw new errors.WrontResetCode(options.errorMessages.WrontResetCode);
         }
       })
