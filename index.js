@@ -84,6 +84,31 @@ module.exports = function(schema, options) {
     next();
   });
 
+  schema.methods.resetPassword = function(password, resetCode, cb) {
+    const promise = Promise.resolve()
+      .then(() => {
+        if (!password) {
+          throw new errors.MissingPasswordError(options.errorMessages.MissingPasswordError);
+        }
+      })
+      .then(() => {
+        if(this.resetCode !== resetCode) {
+          throw new errors.WrontResetCode(options.errorMessages.WrontResetCode);
+        }
+      })
+      .then(() => this.setPassword(password))
+      .then(() => this.save())
+      .then(() => this);
+
+      if (!cb) {
+        return promise;
+      }
+
+      promise
+        .then(result => cb(null, result))
+        .catch(err => cb(err));
+      }
+
   schema.methods.setPassword = function(password, cb) {
     const promise = Promise.resolve()
       .then(() => {
