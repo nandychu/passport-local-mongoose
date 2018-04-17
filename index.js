@@ -109,6 +109,7 @@ module.exports = function(schema, options) {
         .catch(err => cb(err));
       }
 
+
   schema.methods.setPassword = function(password, cb) {
     const promise = Promise.resolve()
       .then(() => {
