@@ -100,6 +100,7 @@ module.exports = function(schema, options) {
       .then(() => this.save())
       .then(() => this);
 
+
       if (!cb) {
         return promise;
       }
