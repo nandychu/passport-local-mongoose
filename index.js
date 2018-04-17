@@ -101,6 +101,7 @@ module.exports = function(schema, options) {
       .then(() => this);
 
 
+
       if (!cb) {
         return promise;
       }
