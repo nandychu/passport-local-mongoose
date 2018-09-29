@@ -247,8 +247,8 @@ module.exports = function(schema, options) {
   };
 
   schema.statics.deserializeUser = function() {
-    return (username, cb) => {
-      this.findByUsername(username, cb);
+    return (user, cb) => {
+      this.findByUsername(user.username, cb);
     };
   };
 
