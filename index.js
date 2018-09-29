@@ -238,7 +238,11 @@ module.exports = function(schema, options) {
   // Passport Interface
   schema.statics.serializeUser = function() {
     return function(user, cb) {
-      cb(null, user.get(options.usernameField));
+      let res = {
+        accountId: user.get('accountId'),
+        username: user.get(options.usernameField)
+      }
+      cb(null, res);
     };
   };
 
